@@ -10,3 +10,29 @@
 // R0 >= 0, R1 >= 0, and R0*R1 < 32768.
 
 // Put your code here.
+        @soma
+        M=0
+        @R0
+        D=M
+        @i
+        M=D
+(LOOP)
+        @i
+        MD=M-1
+        @FINAL
+        D;JLT
+        @R1
+        D=M
+        @soma
+        M=M+D
+        @LOOP
+        0;JMP
+(FINAL)
+        @soma
+        D=M
+        @R2
+        M=D
+(STOP)
+    @STOP
+    0;JMP
+
