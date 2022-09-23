@@ -1,12 +1,15 @@
 class Bola {
+    field int direcao;
 
     constructor Bola new() {
+        let direcao = 0;
         do posicionaBolaNoMeioCampo();
         return this;
     }
 
     method void posicionaBolaNoMeioCampo() {
-      do Screen.drawCircle(256, 128, 7);
+      do Screen.setColor(true);
+      do Screen.drawCircle(256, 128, 10);
       return;
     }
 }
