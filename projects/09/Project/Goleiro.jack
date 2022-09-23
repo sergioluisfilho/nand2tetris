@@ -1,5 +1,10 @@
 class Goleiro {
+
     field int lado; 
+    field int x1;
+    field int y1;
+    field int x2;
+    field int y2;
 
     constructor Goleiro new(int mandoDeCampo) {
         let lado = mandoDeCampo;
@@ -9,9 +14,47 @@ class Goleiro {
 
     method void colocaEmCampo() {
       do Screen.setColor(true);
-      if (lado = 1) { do Screen.drawRectangle(10, 88, 20, 168); }
-      if (lado = 2) { do Screen.drawRectangle(492, 88, 502, 168); }
+
+      if (lado = 1) { 
+        let x1 = 10;
+        let y1 = 88;
+        let x2 = 20;
+        let y2 = 168;
+        }
+
+      if (lado = 2) {
+        let x1 = 492;
+        let y1 = 88;
+        let x2 = 502;
+        let y2 = 168; 
+        }
+      
+      do Screen.drawRectangle(x1, y1, x2, y2);
       return;
+    }
+
+    method void erase() {
+       do Screen.setColor(false);
+       do Screen.drawRectangle(x1, y1, x2, y2);
+       return;
+    }
+
+    method void moveDown () {
+        do erase();
+        let y1 = y1 + 10;
+        let y2 = y2 + 10;
+        do Screen.setColor(true);
+        do Screen.drawRectangle(x1, y1, x2, y2);
+        return;
+    }
+
+    method void moveUp () {
+        do erase();
+        let y1 = y1 - 10;
+        let y2 = y2 - 10;
+        do Screen.setColor(true);
+        do Screen.drawRectangle(x1, y1, x2, y2);
+        return;
     }
 
    method void dispose() {

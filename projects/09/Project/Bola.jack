@@ -17,4 +17,12 @@ class Bola {
       do Memory.deAlloc(this);
       return;
     }
+
+    // method void moveDown (int x1, int y1, int x2, int y2) {}
+
+    // method void moveUp (int x1, int y1, int x2, int y2) {}
+
+    // method void moveLeft (int x1, int y1, int x2, int y2) {}
+
+    // method void moveRight (int x1, int y1, int x2, int y2) {}
 }

@@ -15,17 +15,22 @@ class Partida {
         var boolean exit;
         let exit = false;
 
-         // waits for a key to be pressed
-        while (key = 0) {
-            let key = Keyboard.keyPressed();
-        }
-
         while (~exit) {
-         if (key = 81)  { let exit = true; }     // q key
-         
-         while (~(key = 0)) {
-            let key = Keyboard.keyPressed();
-         }
+
+            // waits for a key to be pressed
+            while (key = 0) {
+                let key = Keyboard.keyPressed();
+            }       
+            
+            if (key = 81)  { let exit = true; }     // q key
+            if (key = 83) { do goleiro1.moveDown(); }   // up arrow
+            if (key = 87) { do goleiro1.moveUp(); }   // up arrow
+            if (key = 131) { do goleiro2.moveUp(); }   // up arrow
+            if (key = 133) { do goleiro2.moveDown();  }   // down arrow
+            
+            while (~(key = 0)) {
+                let key = Keyboard.keyPressed();
+            }
 
         }
 
