@@ -13,4 +13,9 @@ class Goleiro {
       if (lado = 2) { do Screen.drawRectangle(492, 88, 502, 168); }
       return;
     }
+
+   method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+   }
 }

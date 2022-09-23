@@ -12,4 +12,9 @@ class Bola {
       do Screen.drawCircle(256, 128, 10);
       return;
     }
+
+    method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+    }
 }

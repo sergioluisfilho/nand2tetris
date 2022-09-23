@@ -12,3 +12,65 @@ call Bola.new 0
 pop this 2
 push pointer 0
 return
+function Partida.run 2
+push argument 0
+pop pointer 0
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 0
+push constant 0
+eq
+not
+if-goto WHILE_END0
+call Keyboard.keyPressed 0
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+label WHILE_EXP1
+push local 1
+not
+not
+if-goto WHILE_END1
+push local 0
+push constant 81
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+pop local 1
+label IF_FALSE0
+label WHILE_EXP2
+push local 0
+push constant 0
+eq
+not
+not
+if-goto WHILE_END2
+call Keyboard.keyPressed 0
+pop local 0
+goto WHILE_EXP2
+label WHILE_END2
+goto WHILE_EXP1
+label WHILE_END1
+push constant 0
+return
+function Partida.dispose 0
+push argument 0
+pop pointer 0
+push this 0
+call Goleiro.dispose 1
+pop temp 0
+push this 1
+call Goleiro.dispose 1
+pop temp 0
+push this 2
+call Bola.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return

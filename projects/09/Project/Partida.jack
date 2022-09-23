@@ -10,4 +10,34 @@ class Partida {
         return this;
     }
 
+    method void run(){
+        var char key;
+        var boolean exit;
+        let exit = false;
+
+         // waits for a key to be pressed
+        while (key = 0) {
+            let key = Keyboard.keyPressed();
+        }
+
+        while (~exit) {
+         if (key = 81)  { let exit = true; }     // q key
+         
+         while (~(key = 0)) {
+            let key = Keyboard.keyPressed();
+         }
+
+        }
+
+        return;
+    }
+   
+   method void dispose() {
+      do goleiro1.dispose();
+      do goleiro2.dispose();
+      do bola.dispose();
+      do Memory.deAlloc(this);
+      return;
+   }
+
 }
