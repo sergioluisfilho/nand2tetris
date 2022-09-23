@@ -1,0 +1,46 @@
+function Goleiro.new 0
+push constant 1
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 0
+push pointer 0
+call Goleiro.colocaEmCampo 1
+pop temp 0
+push pointer 0
+return
+function Goleiro.colocaEmCampo 0
+push argument 0
+pop pointer 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push this 0
+push constant 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 10
+push constant 88
+push constant 20
+push constant 168
+call Screen.drawRectangle 4
+pop temp 0
+label IF_FALSE0
+push this 0
+push constant 2
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 492
+push constant 88
+push constant 502
+push constant 168
+call Screen.drawRectangle 4
+pop temp 0
+label IF_FALSE1
+push constant 0
+return

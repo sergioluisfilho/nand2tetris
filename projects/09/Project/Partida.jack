@@ -1,0 +1,13 @@
+class Partida {
+    field Goleiro goleiro1;
+    field Goleiro goleiro2;
+    field Bola bola;
+    
+    constructor Partida new() {
+        let bola = Bola.new();
+        let goleiro1 = Goleiro.new(1);
+        let goleiro2 = Goleiro.new(2);
+        return this;
+    }
+
+}

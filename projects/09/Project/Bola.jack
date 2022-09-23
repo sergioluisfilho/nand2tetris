@@ -1,0 +1,12 @@
+class Bola {
+
+    constructor Bola new() {
+        do posicionaBolaNoMeioCampo();
+        return this;
+    }
+
+    method void posicionaBolaNoMeioCampo() {
+      do Screen.drawCircle(256, 128, 7);
+      return;
+    }
+}

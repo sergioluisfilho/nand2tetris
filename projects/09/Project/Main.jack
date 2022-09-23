@@ -1,0 +1,8 @@
+class Main {
+    function void main() {
+        var Partida partida;
+        let partida = Partida.new();
+        // do partida.run();
+        return;
+    }
+}
