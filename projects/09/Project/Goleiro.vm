@@ -71,6 +71,15 @@ return
 function Goleiro.moveDown 0
 push argument 0
 pop pointer 0
+push this 4
+push constant 245
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
 push pointer 0
 call Goleiro.erase 1
 pop temp 0
@@ -97,6 +106,15 @@ return
 function Goleiro.moveUp 0
 push argument 0
 pop pointer 0
+push this 2
+push constant 11
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
 push pointer 0
 call Goleiro.erase 1
 pop temp 0

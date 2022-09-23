@@ -40,6 +40,7 @@ class Goleiro {
     }
 
     method void moveDown () {
+        if ( y2 > 245 ) { return ;}
         do erase();
         let y1 = y1 + 10;
         let y2 = y2 + 10;
@@ -49,6 +50,7 @@ class Goleiro {
     }
 
     method void moveUp () {
+        if ( y1 < 11 ) { return ;}
         do erase();
         let y1 = y1 - 10;
         let y2 = y2 - 10;
