@@ -7,8 +7,8 @@ class BattleSquare {
    field int BallXPosition;
    field int BallYPosition;
    field Random random;
-   field int Score1;
-   field int Score2;
+   field int score1;
+   field int score2;
    field int ballSize;
                         
 
@@ -21,8 +21,10 @@ class BattleSquare {
       let square2 = Square.new(500, 0, 10);
       let direction2 = 0;  // initial state is no movement
 
-      let Score1 = 0;
-      let Score2 = 0;
+      let score1 = 0;
+      let score2 = 0;
+
+      do showScore();
       
       let random = Random.new(13);
       do drawTheBall();
@@ -33,6 +35,12 @@ class BattleSquare {
       let BallXPosition = random.randRange(500);
       let BallYPosition = random.randRange(240);
       let ballSize = 2;
+      do Square.new(BallXPosition, BallYPosition, ballSize);
+      return;
+   }
+
+   method void eraseTheBall() {
+      do Screen.setColor(false);
       do Square.new(BallXPosition, BallYPosition, ballSize);
       return;
    }
@@ -67,39 +75,74 @@ class BattleSquare {
 
       //bola dentro do player na horizontal e bola dentro do player na vertical
       if ( ((x1 < a1) & (a1 < x2)) & ((y1 < b1) & (b1 < y2)) ) {
-         do Output.printString("colisão");
-         // do square1.incSize(); apagar bola e redesehar
-         // TODO: apagar bola para que a colisão so conte 1 vez  []
-         // TODO: aumentar tamanho do player que marcou o ponto []
-         // TODO: repetir funções para player 2 []
-         // TODO: redesenhar a bola em outro lugar []
-         // TODO: pensar e implementar a finalização do jogo
-
          return true;
       }
 
       return false;
    }
 
-   /** Moves the square1 in the current direction1. */
+   method boolean colision2(){
+      var int a1;
+      var int b1;
+      var int a2; 
+      var int b2; 
+      var int x1; 
+      var int y1; 
+      var int x2;
+      var int y2;
+
+      let a1 = BallXPosition;  
+      let b1 = BallYPosition;
+      let a2 = BallXPosition + ballSize; 
+      let b2 = BallYPosition + ballSize;   
+
+      let x1 = square2.getX();
+      let y1 = square2.getY();
+      let x2 = square2.getX() + square2.getSize();  
+      let y2 = square2.getY() + square2.getSize(); 
+
+      //bola dentro do player na horizontal e bola dentro do player na vertical
+      if ( ((x1 < a1) & (a1 < x2)) & ((y1 < b1) & (b1 < y2)) ) {
+         return true;
+      }
+
+      return false;
+   }
+
+   method void score (int player) {
+      // do Output.printString("colisão");
+      do eraseTheBall();
+      if (player = 1) { let score1 = score1 + 1; }
+      if (player = 2) { let score2 = score2 + 1; }
+      do showScore();
+      // TODO: atualizar o placar []
+      // TODO: redesenhar a bola em outro lugar []
+      // TODO: pensar e implementar a finalização do jogo
+      return;   
+   }
+
    method void moveSquare1() {
       if (direction1 = 1) { do square1.moveUp(); }
       if (direction1 = 2) { do square1.moveDown(); }
       if (direction1 = 3) { do square1.moveLeft(); }
       if (direction1 = 4) { do square1.moveRight(); }
-      do Sys.wait(5);  // delays the next movement }
-      do colision();
+      if (colision()) {
+         do score(1);
+      }
+      do Sys.wait(6);  
       return;
    }
 
-      /** Moves the square2 in the current direction2. */
+
    method void moveSquare2() {
       if (direction2 = 1) { do square2.moveUp(); }
       if (direction2 = 2) { do square2.moveDown(); }
       if (direction2 = 3) { do square2.moveLeft(); }
       if (direction2 = 4) { do square2.moveRight(); }
-
-      do Sys.wait(5);
+      if (colision2()) {
+      do score(2);
+      }
+      do Sys.wait(6);
       return;
    }
 
@@ -118,7 +161,7 @@ class BattleSquare {
          }
          if (key = 81)  { let exit = true; }     // q key
          // if (key = 90)  { do square1.decSize(); } // z key
-         // if (key = 88)  { do square1.incSize(); } // x key
+         // if (key = 88)  { do square1.incScore(); } // x key
          if (key = 131) { let direction2 = 1; }   // up arrow
          if (key = 133) { let direction2 = 2; }   // down arrow
          if (key = 130) { let direction2 = 3; }   // left arrow
@@ -137,6 +180,31 @@ class BattleSquare {
          }
      } // while
      return;
+   }
+
+   method void showScore() {
+      do eraseScore();
+      do Output.printString("Score: ");
+      do Output.printInt(score1);
+      do Output.printString(" x ");
+      do Output.printInt(score2);
+      return;
+   }
+
+   method void eraseScore(){
+      do Output.backSpace();
+      do Output.backSpace();
+      do Output.backSpace();
+      do Output.backSpace();
+      do Output.backSpace();
+      do Output.backSpace();
+      do Output.backSpace();
+      do Output.backSpace();
+      do Output.backSpace();
+      do Output.backSpace();
+      do Output.backSpace();
+      do Output.backSpace();
+      return;
    }
 }
 
