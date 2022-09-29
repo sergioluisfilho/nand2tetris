@@ -10,6 +10,7 @@ class BattleSquare {
    field int score1;
    field int score2;
    field int ballSize;
+   field boolean exit;
                         
 
    /** Constructs a new Square Game. */
@@ -32,8 +33,8 @@ class BattleSquare {
    }
 
    method void drawTheBall(){
-      let BallXPosition = random.randRange(500);
-      let BallYPosition = random.randRange(240);
+      let BallXPosition = random.randRange(500) + 2;
+      let BallYPosition = random.randRange(240) + 2;
       let ballSize = 2;
       do Square.new(BallXPosition, BallYPosition, ballSize);
       return;
@@ -114,7 +115,15 @@ class BattleSquare {
       do eraseTheBall();
       if (player = 1) { let score1 = score1 + 1; }
       if (player = 2) { let score2 = score2 + 1; }
+
+      if (score1 = 7) { 
+         do gameOver(1);
+      }
+      if (score2 = 7) { 
+         do gameOver(2);
+      }
       do showScore();
+      do drawTheBall();
       // TODO: atualizar o placar []
       // TODO: redesenhar a bola em outro lugar []
       // TODO: pensar e implementar a finalização do jogo
@@ -149,7 +158,6 @@ class BattleSquare {
    /** Runs the game: handles the user's inputs and moves the square accordingly */
    method void run() {
       var char key;  // the key currently pressed by the user
-      var boolean exit;
       let exit = false;
       
       while (~exit) {
@@ -159,9 +167,7 @@ class BattleSquare {
             do moveSquare1();
             do moveSquare2();
          }
-         if (key = 81)  { let exit = true; }     // q key
-         // if (key = 90)  { do square1.decSize(); } // z key
-         // if (key = 88)  { do square1.incScore(); } // x key
+
          if (key = 131) { let direction2 = 1; }   // up arrow
          if (key = 133) { let direction2 = 2; }   // down arrow
          if (key = 130) { let direction2 = 3; }   // left arrow
@@ -180,6 +186,12 @@ class BattleSquare {
          }
      } // while
      return;
+   }
+
+   method void gameOver(int player){
+      do showScore();
+      let exit = true;
+      return;
    }
 
    method void showScore() {
