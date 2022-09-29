@@ -48,7 +48,7 @@ class BattleSquare {
    method void drawTheBall(){
       let BallXPosition = random.randRange(500);
       let BallYPosition = random.randRange(240);
-      let ballSize = (10);
+      let ballSize = (6);
       do Square.new(BallXPosition, BallYPosition, ballSize);
       return;
    }
@@ -72,8 +72,8 @@ class BattleSquare {
       var int y2;
 
       let a1 = BallXPosition;  
-      let b1 = BallXPosition;
-      let a2 = BallYPosition + ballSize; 
+      let b1 = BallYPosition;
+      let a2 = BallXPosition + ballSize; 
       let b2 = BallYPosition + ballSize;   
 
       let x1 = square1.getX();
@@ -81,8 +81,10 @@ class BattleSquare {
       let x2 = square1.getX() + square1.getSize();  
       let y2 = square1.getY() + square1.getSize(); 
 
-      if ((x1 < a1) & (a1 < x2)) {
+      //bola dentro do player na horizontal e bola dentro do player na vertical
+      if ( ((x1 < a1) & (a1 < x2)) & ((y1 < b1) & (b1 < y2)) ) {
          do Output.printString("colisão");
+         // do square1.incSize(); apagar bola e redesehar
          return true;
       }
 
