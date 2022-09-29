@@ -25,15 +25,16 @@ class BattleSquare {
    field Random random;
    field int Score1;
    field int Score2;
+   field int ballSize;
                         
 
    /** Constructs a new Square Game. */
    constructor BattleSquare new() {
       // Creates a 30 by 30 pixels square and positions it at the top-left
       // of the screen.
-      let square1 = Square.new(0, 0, 12);
+      let square1 = Square.new(0, 0, 10);
       let direction1 = 0;  // initial state is no movement
-      let square2 = Square.new(500, 0, 12);
+      let square2 = Square.new(500, 0, 10);
       let direction2 = 0;  // initial state is no movement
 
       let Score1 = 0;
@@ -47,7 +48,8 @@ class BattleSquare {
    method void drawTheBall(){
       let BallXPosition = random.randRange(500);
       let BallYPosition = random.randRange(240);
-      do Square.new(BallXPosition, BallYPosition, 8);
+      let ballSize = (10);
+      do Square.new(BallXPosition, BallYPosition, ballSize);
       return;
    }
 
@@ -59,38 +61,42 @@ class BattleSquare {
       return;
    }
 
+   method boolean colision(){
+      var int a1;
+      var int b1;
+      var int a2; 
+      var int b2; 
+      var int x1; 
+      var int y1; 
+      var int x2;
+      var int y2;
+
+      let a1 = BallXPosition;  
+      let b1 = BallXPosition;
+      let a2 = BallYPosition + ballSize; 
+      let b2 = BallYPosition + ballSize;   
+
+      let x1 = square1.getX();
+      let y1 = square1.getY();
+      let x2 = square1.getX() + square1.getSize();  
+      let y2 = square1.getY() + square1.getSize(); 
+
+      if ((x1 < a1) & (a1 < x2)) {
+         do Output.printString("colisão");
+         return true;
+      }
+
+      return false;
+   }
+
    /** Moves the square1 in the current direction1. */
    method void moveSquare1() {
       if (direction1 = 1) { do square1.moveUp(); }
       if (direction1 = 2) { do square1.moveDown(); }
       if (direction1 = 3) { do square1.moveLeft(); }
       if (direction1 = 4) { do square1.moveRight(); }
-
-      // if (BallXPosition = square1.getX()) {
-      //    do Output.printString("colisão X");
-      // }
-
-      // if (BallYPosition = square1.getY()) {
-      //    do Output.printString("colisão Y");
-      // }
-
-
-      // BallXPosition =  a1
-      // BallXPosition =  b1
-      // BallYPosition + size = a2  
-      // BallYPosition + size = b2 
-
-      // square1.getX()= x1
-      // square1.getY()= y1
-      // square1.getX() + size = x2
-      // square1.getY() + size = y2
-
-      if ((BallXPosition = square1.getX()) & (BallYPosition = square1.getY())) {
-         do Output.printString("colisão");
-      }
-
-
       do Sys.wait(5);  // delays the next movement }
+      do colision();
       return;
    }
 
@@ -100,6 +106,8 @@ class BattleSquare {
       if (direction2 = 2) { do square2.moveDown(); }
       if (direction2 = 3) { do square2.moveLeft(); }
       if (direction2 = 4) { do square2.moveRight(); }
+
+      do Sys.wait(5);
       return;
    }
 
